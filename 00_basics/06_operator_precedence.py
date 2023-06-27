@@ -1,5 +1,5 @@
 x = 10 + 3 * 2
-# In Math, + and / have higher precedence than + and -
+# In Math, * and / have higher precedence than + and -
 # - i.e. 3 * 2 is evaluated first and the results added to 10
 # In Python, it is the same.
 print(x)

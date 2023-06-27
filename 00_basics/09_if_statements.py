@@ -1,5 +1,5 @@
 # Create a variable called Temperature. Display messages based on different values of Temperature
-temperature = 35
+temperature = 5
 
 if temperature > 30:
     print("It's a hot day")
