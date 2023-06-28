@@ -30,7 +30,7 @@ print(point2.x)
 point2.move()
 
 point3 = Point()
-# print(point3.x) -- will  throw a error. Since point 3 does not have an attribute x.
+# print(point3.x) # will  throw a error. Since point 3 does not have an attribute x.
 point3.x = 3
 print(point3.x)
 

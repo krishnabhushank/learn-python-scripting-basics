@@ -10,6 +10,7 @@ class Dog(Mammal):
 class Cat(Mammal):
     pass
 
+
 dog1 = Dog()
 dog1.walk()
 

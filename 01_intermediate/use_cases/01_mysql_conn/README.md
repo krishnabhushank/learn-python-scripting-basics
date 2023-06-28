@@ -18,7 +18,7 @@ Replace following text with actual values:
 
 ```shell
 mkdir /tmp/code; cd /tmp/code
-git clone git@github.com:krishnabhushank/learn-python-scripting-basics.git
+git clone git@gitlab.nonprod.mt.oh.transformco.com:kkoneru/learn-python-scripting-basics.git
 ```
 
 ## To setup Virtual environment on Unix
@@ -28,7 +28,7 @@ mkdir -p /tmp/venv
 virtualenv -p python3 01_mysql_conn.venv
 cd /tmp/venv/01_mysql_conn.venv
 source bin/activate
-cd /tmp/code/01_intermediate/use_cases/01_mysql_conn
+cd /tmp/code/learn-python-scripting-basics/01_intermediate/use_cases/01_mysql_conn
 pip install -r requirements.txt
 deactivate
 ```
@@ -37,7 +37,7 @@ deactivate
 
 ```shell
 source /tmp/venv/01_mysql_conn.venv/bin/activate
-python /tmp/code/01_intermediate/use_cases/01_mysql_conn/app.py
+python /tmp/code/learn-python-scripting-basics/01_intermediate/use_cases/01_mysql_conn/app.py
 deactivate
 ```
 
