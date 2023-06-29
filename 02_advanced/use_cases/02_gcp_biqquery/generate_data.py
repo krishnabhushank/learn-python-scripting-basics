@@ -62,74 +62,8 @@ def generate_data(export_file_path) -> int:
     job_status = 'SUCCESS'
 
     query_str = f'''
-select lpad(cast(k.ksn_id as string),9,'0') as ksn_id,
-       rpad(k.description,40,' ') as description,
-       rpad(ifnull(cbs.srs_div_no,''),3,' ') as srs_div_no,
-       rpad(ifnull(cbs.srs_itm_no,''),5,' ') as srs_itm_no,
-       rpad(ifnull(cbs.srs_sku_no,''),5,' ') as srs_sku_no,
-       rpad(ifnull(oi.Item_Type_Cd,''),4,' ') as item_type_cd,
-       lpad(cast(hi.bus_nbr as string),10,'0') as bus_nbr,
-       lpad(cast(hi.dvsn_nbr as string),10,'0') as dvsn_nbr,
-       lpad(cast(hi.dept_nbr as string),10,'0') as dept_nbr,
-       lpad(cast(hi.catg_nbr as string),10,'0') as catg_nbr,
-       lpad(cast(hi.sub_catg_nbr as string),10,'0') as sub_catg_nbr,
-       rpad(ifnull(sk_xref.srs_bus_nbr,''),3,' ') as srs_bus_nbr,
-       rpad(ifnull(sk_xref.srs_ln_no,''),2,' ') as srs_ln_no,
-       rpad(ifnull(sk_xref.srs_sbl_no,''),2,' ') as srs_sbl_no,
-       rpad(ifnull(sk_xref.srs_cls_no,''),3,' ') as srs_cls_no
-  from (
-select ksn_id,
-       Description,
-       Item_Id
-  from `shc-ent-data-library-prod.PreIntegration_Views.IMA_Ksn` 
- where date(Expir_Ts) >= current_date
-       ) as k
-  left join
-       (
-select ksn_id,
-       srs_div_no,
-       srs_itm_no,
-       srs_sku_no
-  from `shc-ent-data-library-prod.PreIntegration_Views.IMA_Core_Bridge_Sku`
- where date(Expir_Ts) >= current_date
-       ) as cbs
-    on (cbs.ksn_id = k.ksn_id)
- left join
-       (
-select Item_Id,
-       Bus_Unit_Nbr as bus_nbr,
-       rpt_Div_Nbr as dvsn_nbr,
-       rpt_dept_nbr as dept_nbr,
-       rpt_catg_nbr as catg_nbr,
-       sub_catg_nbr
-  from `shc-ent-data-library-prod.PreIntegration_Views.IMA_Hier_Item`
- where date(Hier_Item_Exp_Dt) >= current_date
-       ) as hi
-    on ( k.Item_Id = hi.item_id )
-  left join
-       (
-select item_id,
-       Item_Type_Cd          
-  from `shc-ent-data-library-prod.PreIntegration_Views.IMA_Oi_Item`
- where date(Expir_Ts) >= current_date
-       ) as oi
-    on ( k.item_id = oi.item_id )
-  left join 
-       (
-select Srs_Bus_Nbr,
-       Srs_Ln_No,
-       Srs_Sbl_No,
-       Srs_Cls_No,
-       Kmt_Dvsn_Nbr,
-       Kmt_Dept_Nbr,
-       Kmt_Catg_Nbr,
-       Kmt_Sub_Catg_Nbr
-  from `shc-ent-data-library-prod.PreIntegration_Views.IMA_Srs_Kmart_Xref`
-       ) as sk_xref
-    on (hi.dvsn_nbr = sk_xref.Kmt_Dvsn_Nbr and
-        hi.dept_nbr = sk_xref.Kmt_Dept_Nbr and
-        hi.catg_nbr = sk_xref.Kmt_Catg_Nbr and
-        hi.sub_catg_nbr = sk_xref.Kmt_Sub_Catg_Nbr)
+select col
+  from table
     '''
     logger.info(f"Query: {query_str}")
 
